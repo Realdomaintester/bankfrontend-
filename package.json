@@ -1,42 +1,28 @@
-name: Build and Deploy to GitHub Pages (single job)
-
-on:
-  push:
-    branches:
-      - main   # adjust if your default branch is different
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build site
-        run: npm run build
-        env:
-          CI: false
-
-      # Upload the built site as an artifact
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist   # Vite outputs to dist by default
-
-      # Deploy the artifact to GitHub Pages
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+{
+  "name": "snips-bank-&-trust---digital-banking-platform",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.9.6",
+    "react-dom": "^19.2.0",
+    "react": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.4",
+    "express": "^5.1.0",
+    "@heroicons/react": "^2.2.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
